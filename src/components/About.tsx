@@ -66,7 +66,7 @@ const About: React.FC = () => {
 
   return (
     <section id="sobre-mi" className="fade-in" ref={sobreMiSectionRef}>
-      <div className="about-background" ref={aboutBgRef} style={{ backgroundImage: `url(/Edd.png)` }}></div>
+      <div className="about-background" ref={aboutBgRef} style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/Edd.png)` }}></div>
       <h2 className="section-title">Sobre Mí</h2>
       <div className="about-content">
         <div className="about-text">
