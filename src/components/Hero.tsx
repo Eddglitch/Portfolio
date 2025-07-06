@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
 
       <div className="hero-video-background">
         <video autoPlay muted loop id="heroVideo" ref={videoRef}>
-          <source src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/video2.mp4`} type="video/mp4" />
+          <source src="/video2.mp4" type="video/mp4" />
           Tu navegador no soporta el video.
         </video>
         <div className="video-overlay"></div>

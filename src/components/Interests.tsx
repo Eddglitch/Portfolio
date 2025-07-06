@@ -26,7 +26,7 @@ const Interests: React.FC = () => {
     <section id="intereses" className="interests fade-in">
       <div className="video-container">
         <video autoPlay muted loop id="interestsVideo" ref={videoRef}>
-          <source src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/tu-video-intereses.mp4`} type="video/mp4" />
+          <source src="/tu-video-intereses.mp4" type="video/mp4" />
           Tu navegador no soporta el video.
         </video>
       </div>
