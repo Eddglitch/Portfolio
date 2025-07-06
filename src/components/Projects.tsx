@@ -10,7 +10,7 @@ const Projects: React.FC<ProjectsProps> = ({ openModal }) => {
       <h2 className="section-title">Proyectos Destacados</h2>
       <div className="projects-grid">
         <div className="project-card">
-          <div className="project-image" onClick={() => openModal('image', '/Edd.png')}>📊</div>
+          <div className="project-image" onClick={() => openModal('image', `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/Edd.png`)}>📊</div>
           <div className="project-content">
             <h3 className="project-title">Dashboard de Ventas Interactivo</h3>
             <p className="project-description">Dashboard que analiza tendencias de ventas, performance por región y predicciones de crecimiento.</p>

@@ -20,8 +20,8 @@ const Music: React.FC<MusicProps> = ({ openModal }) => {
           <p className="band-role">🎸 Bajista</p>
           <p className="band-description">Proyecto musical actual donde exploro sonidos contemporáneos y experimentales. Sahkil representa mi evolución como músico.</p>
           <div className="band-media">
-            <div className="media-placeholder" onClick={() => openModal('video', '/video.mp4')}>🎥 Video</div>
-            <div className="media-placeholder" onClick={() => openModal('image', '/Edd.png')}>📸 Fotos</div>
+            <div className="media-placeholder" onClick={() => openModal('video', `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/video.mp4`)}>🎥 Video</div>
+            <div className="media-placeholder" onClick={() => openModal('image', `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/Edd.png`)}>📸 Fotos</div>
           </div>
           <div className="band-links">
             <a href="https://open.spotify.com/intl-es/artist/5x5SPiyrPuoNo3kNRAmnu7?si=oDgc8UzQShqUoeWBDpwxkA" className="band-link" target="_blank">🎵 Spotify</a>
@@ -40,8 +40,8 @@ const Music: React.FC<MusicProps> = ({ openModal }) => {
           <p className="band-role">🎸 Bajista</p>
           <p className="band-description">Banda con la que exploré los géneros del soul, funk y R&B. Una experiencia que me enseñó la importancia del groove.</p>
           <div className="band-media">
-            <div className="media-placeholder" onClick={() => openModal('video', '/video2.mp4')}>🎥 Video</div>
-            <div className="media-placeholder" onClick={() => openModal('image', '/Edd.jpg')}>📸 Fotos</div>
+            <div className="media-placeholder" onClick={() => openModal('video', `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/video2.mp4`)}>🎥 Video</div>
+            <div className="media-placeholder" onClick={() => openModal('image', `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/Edd.jpg`)}>📸 Fotos</div>
           </div>
           <div className="band-links">
             <a href="#" className="band-link">🎵 Música</a>
