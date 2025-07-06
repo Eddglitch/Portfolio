@@ -17,14 +17,14 @@ const Projects: React.FC<ProjectsProps> = ({ openModal }) => {
           </div>
         </div>
         <div className="project-card">
-          <div className="project-image" onClick={() => openModal('image', '/Edd.png')}>🌐</div>
+          <div className="project-image" onClick={() => openModal('image', `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/Edd.png`)}>🌐</div>
           <div className="project-content">
             <h3 className="project-title">Visualización de Datos Geoespaciales</h3>
             <p className="project-description">Mapa interactivo que muestra patrones de migración urbana y densidad poblacional.</p>
           </div>
         </div>
         <div className="project-card">
-          <div className="project-image" onClick={() => openModal('image', '/Edd.png')}>💰</div>
+          <div className="project-image" onClick={() => openModal('image', `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/Edd.png`)}>💰</div>
           <div className="project-content">
             <h3 className="project-title">Análisis de Mercado Financiero</h3>
             <p className="project-description">Herramienta de análisis técnico para traders con indicadores personalizados y alertas.</p>
