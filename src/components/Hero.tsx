@@ -29,7 +29,6 @@ const Hero: React.FC = () => {
         <h1>Eduardo Téllez Valverde</h1>
         <p className="subtitle">Creador de Contenido Gráfico para Análisis de Datos</p>
         <p className="description">Transformo datos complejos en narrativas visuales comprensibles y atractivas. Especializado en crear visualizaciones que comunican insights de manera efectiva.</p>
-        <a href="#proyectos" className="cta-button">Ver Mi Trabajo</a>
       </div>
 
       <div className="hero-video-background">
@@ -38,6 +37,7 @@ const Hero: React.FC = () => {
           Tu navegador no soporta el video.
         </video>
         <div className="video-overlay"></div>
+        <a href="#proyectos" className="cta-button">Ver Mi Trabajo</a>
       </div>
     </section>
   );
