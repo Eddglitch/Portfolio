@@ -26,8 +26,8 @@ const Hero: React.FC = () => {
     <section id="inicio" className="hero">
       <div className="hero-bg"></div>
       <div className="hero-content">
-        <h1>Eduardo Téllez Valverde</h1>
-        <p className="subtitle">Creador de Contenido Gráfico para Análisis de Datos</p>
+        <h1 className="hero-main-title">Eduardo Téllez Valverde</h1>
+        <p className="hero-subtitle">Graphic content creator for data analisis and optimization</p>
         <p className="description">Transformo datos complejos en narrativas visuales comprensibles y atractivas. Especializado en crear visualizaciones que comunican insights de manera efectiva.</p>
       </div>
 

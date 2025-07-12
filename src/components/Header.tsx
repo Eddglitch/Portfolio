@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import styles from './Header.module.css';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  isMenuOpen: boolean;
+  setIsMenuOpen: (isOpen: boolean) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen }) => {
   const [lastScrollTop, setLastScrollTop] = useState(0);
-  const [headerTransform, setHeaderTransform] = useState('translateY(0)');
+  const [headerVisible, setHeaderVisible] = useState(true);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       if (scrollTop > lastScrollTop && scrollTop > 100) {
-        setHeaderTransform('translateY(-100%)');
+        setHeaderVisible(false);
       } else {
-        setHeaderTransform('translateY(0)');
+        setHeaderVisible(true);
       }
       setLastScrollTop(scrollTop);
     };
@@ -19,17 +27,29 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollTop]);
 
+  const handleLinkClick = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
-    <header style={{ transform: headerTransform }}>
-      <nav>
-        <div className="logo">Edd Téllez</div>
-        <ul className="nav-links">
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#sobre-mi">Sobre Mí</a></li>
-          <li><a href="#proyectos">Proyectos</a></li>
-          <li><a href="#intereses">Intereses</a></li>
-          <li><a href="#trayectoria-musical">Música</a></li>
-          <li><a href="#contacto">Contacto</a></li>
+    <header className={styles.header} style={{ transform: headerVisible ? 'translateY(0)' : 'translateY(-100%)' }}>
+      <nav className={styles.nav}>
+        <div className={styles.logo}>
+          <Image src={`${basePath}/logeed.jpeg`} alt="Logo" width={40} height={40} style={{ marginRight: '10px' }} />
+          <span style={{ color: 'gray', opacity: 0.6, filter: 'blur(1px)' }}>-- EddGlitch --</span>
+        </div>
+        <button className={`${styles.hamburger} ${isMenuOpen ? styles.open : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
+          <div className={styles.line1}></div>
+          <div className={styles.line2}></div>
+          <div className={styles.line3}></div>
+        </button>
+        <ul className={`${styles.navLinks} ${isMenuOpen ? styles.open : ''}`}>
+          <li><a href="#inicio" onClick={handleLinkClick}>Inicio</a></li>
+          <li><a href="#sobre-mi" onClick={handleLinkClick}>Sobre Mí</a></li>
+          <li><a href="#proyectos" onClick={handleLinkClick}>Proyectos</a></li>
+          <li><a href="#intereses" onClick={handleLinkClick}>Intereses</a></li>
+          <li><a href="#trayectoria-musical" onClick={handleLinkClick}>Música</a></li>
+          <li><a href="#contacto" onClick={handleLinkClick}>Contacto</a></li>
         </ul>
       </nav>
     </header>

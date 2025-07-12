@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 
-const CustomCursor: React.FC = () => {
+interface CustomCursorProps {
+  isHidden?: boolean;
+}
+
+const CustomCursor: React.FC<CustomCursorProps> = ({ isHidden }) => {
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,7 +31,17 @@ const CustomCursor: React.FC = () => {
       requestAnimationFrame(animateCursor);
     };
 
+    const handleMouseDown = () => {
+      cursor.classList.add('clicked');
+    };
+
+    const handleMouseUp = () => {
+      cursor.classList.remove('clicked');
+    };
+
     document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mouseup', handleMouseUp);
     requestAnimationFrame(animateCursor);
 
     const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-item, .media-placeholder, .eye-container-wrapper, .social-media-group');
@@ -39,12 +53,18 @@ const CustomCursor: React.FC = () => {
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mouseup', handleMouseUp);
       interactiveElements.forEach(el => {
         el.removeEventListener('mouseenter', () => cursor.classList.add('hover'));
         el.removeEventListener('mouseleave', () => cursor.classList.remove('hover'));
       });
     };
   }, []);
+
+  if (isHidden) {
+    return null;
+  }
 
   return <div className="cursor" ref={cursorRef}></div>;
 };

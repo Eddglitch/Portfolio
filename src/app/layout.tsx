@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '../components/Header';
@@ -14,6 +14,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   useEffect(() => {
     // Lógica de Smooth Scroll y Fade-in
     document.documentElement.style.scrollBehavior = 'auto';
@@ -93,11 +95,14 @@ export default function RootLayout({
       <head>
         <title>Eduardo Téllez - Visualización de Datos & Música</title>
         <meta name="description" content="Portafolio de Eduardo Téllez, especialista en visualización de datos y músico." />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet" />
       </head>
       <body className={inter.className} data-theme="dark">
-        <CustomCursor />
+        <CustomCursor isHidden={isMenuOpen} />
         <ThemeToggle />
-        <Header />
+        <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         <main>{children}</main>
         <Footer />
       </body>

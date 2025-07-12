@@ -15,6 +15,20 @@ Este es el repositorio del portafolio personal de Eduardo Téllez, desarrollado 
   - **Modal Multimedia:** Un visor de imágenes y videos integrado para mostrar los proyectos.
 - **Totalmente Responsivo:** Adaptado para una correcta visualización en dispositivos de escritorio, tabletas y móviles.
 
+### Rama: `feature/python-showcase`
+
+Esta rama introduce las siguientes mejoras y funcionalidades:
+
+- **Showcase Interactivo de Scripts:**
+  - Se ha añadido un módulo interactivo para demostrar la ejecución de scripts de Python.
+  - Se accede a través de la sección "Sobre Mí", haciendo clic en la habilidad "Python".
+  - El showcase se presenta en una capa superpuesta (overlay) para no interrumpir el flujo de navegación y mantener la carga inicial de la página ligera.
+  - Incluye un botón de cierre para volver fácilmente a la página principal.
+- **Rediseño del Hero Section:**
+  - Se ha reestructurado el contenido principal para dar más énfasis al rol ("Creador de Contenido Gráfico") y menos al nombre.
+  - Se ha importado y aplicado la fuente "Josefin Sans" de Google Fonts para el nuevo título principal.
+  - Se han corregido los problemas de espaciado y superposición entre el texto y el video de fondo.
+
 ---
 
 ## 🚀 Cómo Empezar
