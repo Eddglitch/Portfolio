@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Hero from '../components/Hero';
-import About from '../components/About';
+import About from '../components/about_me/About';
 import Projects from '../components/Projects';
 import Interests from '../components/Interests';
 import Music from '../components/Music';

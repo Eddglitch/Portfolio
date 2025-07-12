@@ -35,7 +35,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen }) => {
     <header className={styles.header} style={{ transform: headerVisible ? 'translateY(0)' : 'translateY(-100%)' }}>
       <nav className={styles.nav}>
         <div className={styles.logo}>
-          <Image src={`${basePath}/logeed.jpeg`} alt="Logo" width={40} height={40} style={{ marginRight: '10px' }} />
+          <Image src={`${basePath}/logeed.png`} alt="Logo" width={90} height={80} style={{ marginRight: '1px' }} />
           <span style={{ color: 'gray', opacity: 0.6, filter: 'blur(1px)' }}>-- EddGlitch --</span>
         </div>
         <button className={`${styles.hamburger} ${isMenuOpen ? styles.open : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">

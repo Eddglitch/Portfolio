@@ -19,10 +19,10 @@ Este es el repositorio del portafolio personal de Eduardo Téllez, desarrollado 
 
 Esta rama introduce las siguientes mejoras y funcionalidades:
 
-- **Showcase Interactivo de Scripts:**
-  - Se ha añadido un módulo interactivo para demostrar la ejecución de scripts de Python.
-  - Se accede a través de la sección "Sobre Mí", haciendo clic en la habilidad "Python".
-  - El showcase se presenta en una capa superpuesta (overlay) para no interrumpir el flujo de navegación y mantener la carga inicial de la página ligera.
+- **Showcase Interactivo de Habilidades:**
+  - Se han añadido módulos interactivos para demostrar habilidades en visualización de datos y diseño.
+  - Se accede a través de la sección "Sobre Mí", haciendo clic en las habilidades correspondientes (Python, Tableau, Power BI, D3.js, Excel, Figma).
+  - Cada showcase se presenta en una capa superpuesta (overlay) para no interrumpir el flujo de navegación y mantener la carga inicial de la página ligera.
   - Incluye un botón de cierre para volver fácilmente a la página principal.
 - **Rediseño del Hero Section:**
   - Se ha reestructurado el contenido principal para dar más énfasis al rol ("Creador de Contenido Gráfico") y menos al nombre.

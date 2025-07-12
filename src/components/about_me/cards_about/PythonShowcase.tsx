@@ -24,6 +24,11 @@ declare global {
     }
 }
 
+interface ExcelRow {
+  [key: string]: string | number | boolean | undefined;
+  _highlighted?: boolean;
+}
+
 interface PythonScriptsShowcaseProps {
   onClose: () => void;
 }
@@ -177,8 +182,8 @@ export default function PythonScriptsShowcase({ onClose }: PythonScriptsShowcase
 
     try {
       const [data1, data2] = await Promise.all([excelFile1.arrayBuffer(), excelFile2.arrayBuffer()]);
-      const json1 = window.XLSX.utils.sheet_to_json(window.XLSX.read(data1).Sheets[window.XLSX.read(data1).SheetNames[0]], { defval: "" });
-      const json2 = window.XLSX.utils.sheet_to_json(window.XLSX.read(data2).Sheets[window.XLSX.read(data2).SheetNames[0]], { defval: "" });
+      const json1: ExcelRow[] = window.XLSX.utils.sheet_to_json(window.XLSX.read(data1).Sheets[window.XLSX.read(data1).SheetNames[0]], { defval: "" });
+      const json2: ExcelRow[] = window.XLSX.utils.sheet_to_json(window.XLSX.read(data2).Sheets[window.XLSX.read(data2).SheetNames[0]], { defval: "" });
 
       const cols1 = columns1.split(',').map(c => c.trim());
       const cols2 = columns2.split(',').map(c => c.trim());
@@ -236,7 +241,8 @@ export default function PythonScriptsShowcase({ onClose }: PythonScriptsShowcase
   };
 
   const handleDownload = (type: string) => {
-    let text, filename;
+    let text: string = '';
+    let filename: string = '';
     if (type === 'exact') {
         text = cex.exactMatchesText;
         filename = 'coincidencias_exactas.txt';
