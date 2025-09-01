@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import styles from './Header.module.css';
+interface HeaderProps {
+  isMenuOpen: boolean;
+  setIsMenuOpen: (isOpen: boolean) => void;
+}
 
-const Header: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen }) => {
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [headerVisible, setHeaderVisible] = useState(true);
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
@@ -13,7 +16,6 @@ const Header: React.FC = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       if (scrollTop > lastScrollTop && scrollTop > 100) {
         setHeaderVisible(false);
-        setIsMenuOpen(false); // Cierra el menú al hacer scroll hacia abajo
       } else {
         setHeaderVisible(true);
       }
@@ -24,19 +26,6 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollTop]);
 
-  useEffect(() => {
-    // Añade o remueve la clase del body para controlar el scroll y el cursor
-    if (isMenuOpen) {
-      document.body.classList.add('menu-open');
-    } else {
-      document.body.classList.remove('menu-open');
-    }
-    // Cleanup: se asegura de remover la clase si el componente se desmonta
-    return () => {
-      document.body.classList.remove('menu-open');
-    };
-  }, [isMenuOpen]);
-
   const handleLinkClick = () => {
     setIsMenuOpen(false);
   };
@@ -45,10 +34,8 @@ const Header: React.FC = () => {
     <header className={`${styles.header} glass-effect`} style={{ transform: headerVisible ? 'translateY(0)' : 'translateY(-100%)' }}>
       <nav className={styles.nav}>
         <div className={styles.logo}>
-          <a href="#inicio" onClick={handleLinkClick}>
-            <Image src={`${basePath}/logeed.png`} alt="Logo" width={90} height={80} style={{ marginRight: '1px' }} />
-            <span style={{ color: 'gray', opacity: 0.6, filter: 'blur(1px)' }}>EddGlitch</span>
-          </a>
+          <Image src={`${basePath}/logeed.png`} alt="Logo" width={90} height={80} style={{ marginRight: '1px' }} />
+          <span style={{ color: 'gray', opacity: 0.6, filter: 'blur(1px)' }}>EddGlitch</span>
         </div>
         <button className={`${styles.hamburger} ${isMenuOpen ? styles.open : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
           <div className={styles.line1}></div>

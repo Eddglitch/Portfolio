@@ -1,15 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 
-interface CustomCursorProps {
-  isHidden?: boolean;
-}
-
-const CustomCursor: React.FC<CustomCursorProps> = ({ isHidden }) => {
+const CustomCursor: React.FC = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     const cursor = cursorRef.current;
-    if (!cursor) return;
+
+    if (isTouchDevice || !cursor) {
+      if (cursor) cursor.style.display = 'none';
+      return;
+    }
 
     let mouseX = 0;
     let mouseY = 0;
@@ -25,19 +26,14 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ isHidden }) => {
     const animateCursor = () => {
       cursorX += (mouseX - cursorX) * easingFactor;
       cursorY += (mouseY - cursorY) * easingFactor;
-
       cursor.style.transform = `translate(${cursorX - cursor.offsetWidth / 2}px, ${cursorY - cursor.offsetHeight / 2}px)`;
-
       requestAnimationFrame(animateCursor);
     };
 
-    const handleMouseDown = () => {
-      cursor.classList.add('clicked');
-    };
-
-    const handleMouseUp = () => {
-      cursor.classList.remove('clicked');
-    };
+    const handleMouseDown = () => cursor.classList.add('clicked');
+    const handleMouseUp = () => cursor.classList.remove('clicked');
+    const handleMouseEnter = () => cursor.classList.add('hover');
+    const handleMouseLeave = () => cursor.classList.remove('hover');
 
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mousedown', handleMouseDown);
@@ -47,8 +43,8 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ isHidden }) => {
     const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-item, .media-placeholder, .eye-container-wrapper, .social-media-group');
 
     interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+      el.addEventListener('mouseenter', handleMouseEnter);
+      el.addEventListener('mouseleave', handleMouseLeave);
     });
 
     return () => {
@@ -56,15 +52,11 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ isHidden }) => {
       document.removeEventListener('mousedown', handleMouseDown);
       document.removeEventListener('mouseup', handleMouseUp);
       interactiveElements.forEach(el => {
-        el.removeEventListener('mouseenter', () => cursor.classList.add('hover'));
-        el.removeEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        el.removeEventListener('mouseenter', handleMouseEnter);
+        el.removeEventListener('mouseleave', handleMouseLeave);
       });
     };
   }, []);
-
-  if (isHidden) {
-    return null;
-  }
 
   return <div className="cursor" ref={cursorRef}></div>;
 };

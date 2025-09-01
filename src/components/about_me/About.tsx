@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
-import PythonShowcase from './cards_about/PythonShowcase';
-import TableauShowcase from './cards_about/TableauShowcase';
-import PowerBIShowcase from './cards_about/PowerBIShowcase';
-import D3jsShowcase from './cards_about/D3jsShowcase';
-import ExcelShowcase from './cards_about/ExcelShowcase';
-import FigmaShowcase from './cards_about/FigmaShowcase';
+import React, { useEffect, useRef, useState, Suspense } from 'react';
+
+const PythonShowcase = React.lazy(() => import('./cards_about/PythonShowcase'));
+const TableauShowcase = React.lazy(() => import('./cards_about/TableauShowcase'));
+const PowerBIShowcase = React.lazy(() => import('./cards_about/PowerBIShowcase'));
+const D3jsShowcase = React.lazy(() => import('./cards_about/D3jsShowcase'));
+const ExcelShowcase = React.lazy(() => import('./cards_about/ExcelShowcase'));
+const FigmaShowcase = React.lazy(() => import('./cards_about/FigmaShowcase'));
 import styles from './About.module.css';
 
 const About: React.FC = () => {
@@ -38,6 +39,17 @@ const About: React.FC = () => {
       observer.unobserve(section);
     };
   }, []);
+
+  useEffect(() => {
+    if (activeShowcase) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [activeShowcase]);
 
   const renderShowcase = () => {
     switch (activeShowcase) {
@@ -84,7 +96,9 @@ const About: React.FC = () => {
       </section>
       {activeShowcase && (
         <div className="showcase-overlay">
-          {renderShowcase()}
+          <Suspense fallback={<div className="flex items-center justify-center h-full text-white text-xl">Cargando...</div>}>
+            {renderShowcase()}
+          </Suspense>
         </div>
       )}
     </>

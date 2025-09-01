@@ -26,17 +26,15 @@ const MediaModal: React.FC<MediaModalProps> = ({ isOpen, onClose, mediaType, med
     };
 
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('modal-open');
       document.addEventListener('keydown', handleEscape);
       document.addEventListener('mousedown', handleClickOutside);
     } else {
-      document.body.style.overflow = 'auto';
-      document.removeEventListener('keydown', handleEscape);
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.classList.remove('modal-open');
     }
 
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.classList.remove('modal-open');
       document.removeEventListener('keydown', handleEscape);
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -45,9 +43,9 @@ const MediaModal: React.FC<MediaModalProps> = ({ isOpen, onClose, mediaType, med
   if (!isOpen) return null;
 
   return (
-    <div className="modal" style={{ display: isOpen ? 'block' : 'none' }}>
-      <span className="close-modal" onClick={onClose}>×</span>
+    <div className="modal" style={{ display: isOpen ? 'flex' : 'none' }}>
       <div className="modal-content" ref={modalRef}>
+        <button className="close-modal" onClick={onClose} aria-label="Cerrar modal">×</button>
         {mediaType === 'video' && mediaSrc && (
           <video controls autoPlay src={mediaSrc} style={{ width: '100%', height: 'auto', borderRadius: '10px' }} />
         )}

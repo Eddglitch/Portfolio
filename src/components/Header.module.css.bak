@@ -1,10 +1,13 @@
+
+
 .header {
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
   z-index: 1000;
-  transition: transform 0.3s ease-in-out, padding 0.3s ease;
+  transition: transform 0.3s ease-in-out;
+  background-color: var(--background-color);
   padding: 0 2rem;
 }
 
@@ -21,7 +24,6 @@
   align-items: center;
   font-size: 1.2rem;
   font-weight: bold;
-  transition: transform 0.3s ease;
 }
 
 .navLinks {
@@ -33,11 +35,10 @@
   align-items: center;
   flex-grow: 1; /* Permite que el menú crezca */
   padding-left: 4rem; /* Mueve el menú a la izquierda */
-  transition: gap 0.3s ease, padding-left 0.3s ease;
 }
 
 .navLinks a {
-  color: var(--color-text-primary);
+  color: var(--text-color);
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
@@ -45,7 +46,7 @@
 }
 
 .navLinks a:hover {
-  color: var(--color-accent-primary);
+  color: var(--primary-color);
 }
 
 .hamburger {
@@ -59,30 +60,13 @@
 .hamburger div {
   width: 25px;
   height: 3px;
-  background-color: var(--color-text-primary);
+  background-color: var(--text-color);
   margin: 5px 0;
   transition: all 0.3s ease;
 }
 
-/* Estilos para Tablets y Desktops pequeños */
-@media (max-width: var(--desktop)) {
-  .navLinks {
-    gap: 1.5rem; /* Reduce el espacio entre links */
-    padding-left: 2rem; /* Reduce el padding a la izquierda */
-  }
-}
-
-/* Estilos para pantallas pequeñas (Móvil/Tablet vertical) */
-@media (max-width: var(--tablet)) {
-  .header {
-    padding: 0 1rem; /* Reduce el padding general del header */
-  }
-
-  .logo {
-    transform: scale(0.85);
-    transform-origin: left;
-  }
-
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
   .navLinks {
     position: fixed;
     top: 0;
@@ -125,3 +109,4 @@
     transform: rotate(45deg) translate(-5px, -6px);
   }
 }
+

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Play, RotateCcw, ChevronDown, ChevronUp, Eye, Code, Zap, Download, Upload, Columns, CheckCircle, GitCompare } from 'lucide-react';
+import '../About.module.css';
+import '../../../app/globals.css'
 
 // Carga dinámica de librerías para Excel y comparación difusa
 const loadScript = (src: string) => {
@@ -356,4 +358,4 @@ export default function PythonScriptsShowcase({ onClose }: PythonScriptsShowcase
 
 function sorted(arr: string[]) {
     return arr.slice().sort((a, b) => a.localeCompare(b));
-}
+} 

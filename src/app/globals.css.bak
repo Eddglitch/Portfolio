@@ -43,13 +43,6 @@
   --transition-fast: 0.15s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
-
-  /* Breakpoints */
-  --mobile-sm: 320px;
-  --mobile: 480px;
-  --tablet: 768px;
-  --desktop: 1024px;
-  --desktop-lg: 1440px;
 }
 
         
@@ -83,7 +76,6 @@
 
         
         body {
-            padding-top: 70px; /* Evita que el contenido se solape con el header fijo */
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--color-bg-primary);
             color: var(--color-text-primary);
@@ -287,7 +279,7 @@
 
         .hero .hero-main-title {
             font-family: 'Josefin Sans', sans-serif;
-            font-size: clamp(1.5rem, 5vw, 3.5rem); 
+            font-size: clamp(2.5rem, 3vw, 3.5rem); 
             font-weight: 700;
             margin-bottom: 20px;
             background: linear-gradient(135deg, var(--color-text-primary), var(--color-text-secondary));
@@ -299,7 +291,7 @@
 
         .hero .hero-subtitle {
             font-family: 'Josefin Sans', sans-serif;
-            font-size: clamp(0.875rem, 2vw, 1.25rem);
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
             color: var(--color-1);
             margin-bottom: 30px;
             animation: fadeInUp 1s ease 0.4s both;
@@ -388,10 +380,6 @@
             transition: opacity 0.5s ease-in-out; 
         }
 
-        .hero-fallback-image {
-          opacity: 0.5; /* Similar to video opacity */
-        }
-
         .hero-video-background .video-overlay {
             position: absolute;
             top: 0;
@@ -439,8 +427,8 @@
         
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
         }
 
         .project-card {
@@ -458,8 +446,7 @@
         }
 
         .project-image {
-            aspect-ratio: 16 / 9;
-            height: auto;
+            height: 200px;
             background: linear-gradient(45deg, var(--color-accent-purple), var(--color-accent-blue));
             display: flex;
             align-items: center;
@@ -927,22 +914,12 @@
         }
 
         
-        @media (max-width: var(--tablet)) {
-            .hero-content {
-                padding-top: 10vh;
-            }
+        @media (max-width: 768px) {
             .hero h1 {
                 font-size: clamp(2rem, 10vw, 2.5rem);
             }
             .hero .subtitle {
                 font-size: clamp(1rem, 5vw, 1.2rem);
-            }
-            .hero-video-background {
-                height: 40vh;
-            }
-            .cta-button {
-                padding: 12px 28px;
-                font-size: 0.9rem;
             }
             nav { padding: 0 20px; }
             .nav-links { display: none; } 
@@ -1006,7 +983,7 @@
   position: relative;
 }
 
-        @media (max-width: var(--mobile)) {
+        @media (max-width: 480px) {
             .hero-content {
                 padding: 0 20px;
             }
@@ -1023,37 +1000,3 @@
                 font-size: clamp(2rem, 10vw, 2.5rem);
             }
         }
-
-/* Estilos para cuando el menú móvil está abierto */
-body.menu-open {
-  overflow: hidden; /* Evita el scroll del fondo */
-}
-
-body.menu-open .cursor {
-  display: none; /* Oculta el cursor personalizado */
-}
-
-/* Estilos para cuando el Modal está abierto */
-body.modal-open {
-  overflow: hidden;
-}
-
-@media (max-width: var(--mobile)) {
-  .modal-content {
-    padding: 15px;
-    max-height: 95vh; /* Asegura que no se salga de la pantalla verticalmente */
-  }
-
-  .close-modal {
-    top: 0px;
-    right: 5px;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    background-color: rgba(0,0,0,0.2);
-    border-radius: 50%;
-  }
-}
